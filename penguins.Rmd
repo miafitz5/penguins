@@ -2,7 +2,9 @@
 title: "Penguins"
 author: "Mia Fitzgerald"
 date: "4/21/2026"
-output: html_document
+output: 
+  html_document:
+    code folding: hide
 ---
 
 ```{r setup, include=FALSE}
@@ -36,9 +38,6 @@ penguins_d_xl <- read_excel("penguins.xlsx", sheet = "Dream Island", na = "NA")
 
 ```{r}
 combined_penguins <- bind_rows(penguins_b_xl, penguins_d_xl, penguins_t_xl)
-
-combined_penguins %>%
-  kable()
 
 ```
 
