@@ -105,7 +105,8 @@ dbWriteTable(con, "combined_penguins", combined_penguins)
 
 ```{r}
 combined_penguins_db <- tbl(con, "combined_penguins")
-combined_penguins_db %>% collect() 
+combined_penguins_db %>% 
+  collect() 
 
 ```
 
