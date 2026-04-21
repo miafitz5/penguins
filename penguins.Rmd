@@ -10,6 +10,9 @@ knitr::opts_chunk$set(echo = TRUE, warning = TRUE, message = TRUE)
 library(knitr)
 library(tidyverse)
 library(readxl)
+library(DBI)
+library(dbplyr)
+library(duckdb)
 
 ```
 
@@ -72,4 +75,26 @@ combined_penguins %>%
 
 
 ^[Question 4 complete]
+
+
+### Started a New, Temporary DuckDB Database
+
+
+```{r}
+con <- DBI::dbConnect(duckdb::duckdb())
+
+dbWriteTable(con, "diamonds", ggplot2::diamonds)
+
+sql <- "
+  SELECT carat, cut, clarity, color, price 
+  FROM diamonds 
+  WHERE price > 18800
+"
+as_tibble(dbGetQuery(con, sql))
+
+
+```
+
+
+^[Question 5 complete]
 
