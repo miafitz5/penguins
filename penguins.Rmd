@@ -83,18 +83,48 @@ combined_penguins %>%
 ```{r}
 con <- DBI::dbConnect(duckdb::duckdb())
 
-dbWriteTable(con, "diamonds", ggplot2::diamonds)
-
-sql <- "
-  SELECT carat, cut, clarity, color, price 
-  FROM diamonds 
-  WHERE price > 18800
-"
-as_tibble(dbGetQuery(con, sql))
-
-
 ```
 
 
 ^[Question 5 complete]
 
+
+### Tibble to the Database
+
+
+```{r}
+dbWriteTable(con, "combined_penguins", combined_penguins)
+
+```
+
+
+^[Question 6 complete]
+
+
+### dbplyr Connection to Penguins DB table
+
+
+```{r}
+combined_penguins_db <- tbl(con, "combined_penguins")
+combined_penguins_db %>% collect() 
+
+```
+
+
+^[Question 7 complete]
+
+
+### SQL Query of Using the DB to Calculate the Average Body Masses for the Different Penguin Species
+
+
+```{r}
+combined_penguins_db %>%
+  select(species, body_mass_g) %>%
+  group_by(species) %>%
+  summarize(avg_body_mass = mean(body_mass_g, na.rm = TRUE)) %>%
+  show_query()
+
+```
+
+
+^[Question 8 complete]
