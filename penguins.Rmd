@@ -1,0 +1,28 @@
+---
+title: "Penguins"
+author: "Mia Fitzgerald"
+date: "4/21/2026"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = TRUE, message = TRUE)
+library(knitr)
+library(tidyverse)
+library(readxl)
+
+```
+
+
+### Loading Three Worksheets
+
+
+```{r}
+penguins_t_xl <- read_excel("penguins.xlsx", sheet = "Torgersen Island", na = "NA")
+penguins_b_xl <- read_excel("penguins.xlsx", sheet = "Biscoe Island", na = "NA")
+penguins_d_xl <- read_excel("penguins.xlsx", sheet = "Dream Island", na = "NA")
+
+```
+
+
+^[Question 1 complete]
