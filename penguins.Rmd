@@ -50,7 +50,7 @@ combined_penguins <- bind_rows(penguins_b_xl, penguins_d_xl, penguins_t_xl)
 
 ```{r}
 combined_penguins %>%
-  ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  ggplot(aes(x = bill_depth_mm, y = bill_length_mm, color = species)) +
   geom_point() + 
   facet_wrap(~island)
 
