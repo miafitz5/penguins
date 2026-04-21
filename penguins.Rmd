@@ -58,12 +58,15 @@ combined_penguins %>%
 ^[Question 3 complete]
 
 
-### 4 
+### Average Body Masses for the Different Penguin Species
 
 
 ```{r}
-
-
+combined_penguins %>%
+  select(species, body_mass_g) %>%
+  group_by(species) %>%
+  summarize(avg_body_mass = mean(body_mass_g, na.rm = TRUE)) %>%
+  kable() 
 
 ```
 
