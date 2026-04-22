@@ -30,6 +30,7 @@ penguins_d_xl <- read_excel("penguins.xlsx", sheet = "Dream Island", na = "NA")
 ```
 
 
+I am using the read_excel function to import three specific sheets—Torgersen, Biscoe, and Dream Island—from a single Excel workbook. By setting na = "NA", I ensure that any text entries labeled "NA" are converted into true missing values so they don't interfere with my future calculations. Finally, I am assigning each sheet to its own unique tibble so I can store and organize the data within my R environment.
 ^[Question 1 complete]
 
 
@@ -42,6 +43,7 @@ combined_penguins <- bind_rows(penguins_b_xl, penguins_d_xl, penguins_t_xl)
 ```
 
 
+I am using the bind_rows() function to stack the three individual island tibbles—Biscoe, Dream, and Torgersen—into a single master dataset.
 ^[Question 2 complete]
 
 
@@ -57,6 +59,7 @@ combined_penguins %>%
 ```
 
 
+I am creating a scatter plot to visualize the relationship between penguin bill depth and bill length across the three islands. By using aes(color = species), I am assigning a unique color to each species so I can easily distinguish between them on the plot.
 ^[Question 3 complete]
 
 
@@ -73,6 +76,7 @@ combined_penguins %>%
 ```
 
 
+I first select only the species and body mass columns, then group the data by species to calculate the average body mass while ignoring any missing values. Finally, I use the kable() function to convert the resulting data into a professional-looking table suitable for a report or document.
 ^[Question 4 complete]
 
 
@@ -85,6 +89,7 @@ con <- DBI::dbConnect(duckdb::duckdb())
 ```
 
 
+In this line, I am establishing a connection to a new, temporary DuckDB database that lives entirely in my computer's RAM.
 ^[Question 5 complete]
 
 
@@ -97,6 +102,7 @@ dbWriteTable(con, "combined_penguins", combined_penguins)
 ```
 
 
+I am taking the combined_penguins tibble from my R environment and writing it into the DuckDB database as a table.
 ^[Question 6 complete]
 
 
@@ -111,6 +117,7 @@ combined_penguins_db %>%
 ```
 
 
+I am creating a dbplyr reference that points R to the specific table inside my database. In the second line, I use collect() to force R to actually download that data from the database and bring it into my local environment as a usable table.
 ^[Question 7 complete]
 
 
@@ -127,4 +134,5 @@ combined_penguins_db %>%
 ```
 
 
+I am using dbplyr to perform a calculation entirely within the database. I first select the species and body mass columns, group them by species, and calculate the average mass. Finally, by using show_query(), I am asking R to display the underlying SQL code it generated to talk to the database instead of showing the actual data results.
 ^[Question 8 complete]
