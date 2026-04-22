@@ -1,2 +1,2 @@
 # penguins
-Data Wrangling in R
+Data Wrangling in R w/ Excel & DuckDB
